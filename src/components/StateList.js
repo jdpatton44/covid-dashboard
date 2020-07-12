@@ -24,7 +24,7 @@ export default function StateList({url}) {
                         <ul>
                             <li>- New Cases: {d.positiveIncrease}</li>
                             <li>- New Deaths: {d.deathIncrease}</li>
-                            <li>- Newly Hospitalized: {d.hospitalizedIncrease}</li>
+                            <li>-   Newly Hospitalized: {d.hospitalizedIncrease}</li>
                         </ul>
                 </div>
                 )}
