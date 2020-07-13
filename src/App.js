@@ -1,6 +1,6 @@
 import React from 'react';
 import StatePicker from './components/StatePicker';
-import StateTable from './components/StateTable';
+import StateTable from './components/Table';
 import Nav from './components/Nav'
 import TableFetcher from './components/TableFetcher'
 

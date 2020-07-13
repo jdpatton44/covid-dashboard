@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import StateTable from './StateTable'
+import Table from './Table'
 import Loading from './Loading'
 
 export default function TableFetcher() {
@@ -44,8 +44,8 @@ export default function TableFetcher() {
         return <p>ERROR: {error}</p>
     }
     return (
-        <div>
-            <StateTable columns={columns} data={ronaData} />
+        <div className="max-w-sm rounded overflow-hidden shadow-lg p-4">
+            <Table columns={columns} data={ronaData} />
         </div>
     )
 }

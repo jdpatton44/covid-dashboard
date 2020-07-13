@@ -1,12 +1,41 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
 import Loading from './Loading'
+import Table from './Table';
 
 
 export default function StateList({url}) {    
 
     const { loading, data: ronaData, error } = useFetch(url);
 
+    const columns = [
+        {
+            Header: "Last 10 Days",
+            Footer: "Covid Table Footer",
+            columns: [
+                {
+                    Header: "Date",
+                    accessor: "date"
+                },
+                {
+                    Header: "New Cases",
+                    accessor: "positiveIncrease"
+                },
+                {
+                    Header: "Total Cases",
+                    accessor: "positive"
+                },
+                {
+                    Header: "New Deaths",
+                    accessor: "deathIncrease"
+                },
+                {
+                    Header: "Total Deaths",
+                    accessor: "deathConfirmed"
+                },
+            ] 
+        },
+    ]
     
     if (loading) {
         return <Loading />
@@ -14,22 +43,11 @@ export default function StateList({url}) {
     if (error !== null) {
         return <p>ERROR: {error}</p>
     }
-    console.log(ronaData)
+
+    
+
     return (
-        <div className="container">
-            <h1 className="text-3xl">Last 10 Days in {ronaData[0].state}</h1>
-            {ronaData.slice(0,10).map(d => {return (
-                <div key={d.date}>
-                    <h4 className="text-xl">{d.date.toString().substring(4,6)}-{d.date.toString().substring(6,9)}-{d.date.toString().substring(0,4)}</h4>
-                        <ul>
-                            <li>- New Cases: {d.positiveIncrease}</li>
-                            <li>- New Deaths: {d.deathIncrease}</li>
-                            <li>-   Newly Hospitalized: {d.hospitalizedIncrease}</li>
-                        </ul>
-                </div>
-                )}
-            )}
-        </div> 
-    )
+        <Table columns={columns} data={ronaData.slice(0,10)} />
+        )
 
 }
